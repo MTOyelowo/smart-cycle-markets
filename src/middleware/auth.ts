@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
-import { sendErrorRes } from "src/utils/helper";
+import { sendErrorRes } from "../utils/helper";
 import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
-import UserModel from "models/user";
-import PasswordResetTokenModel from "src/models/passwordResetToken";
+import UserModel from "../models/user";
+import PasswordResetTokenModel from "../models/passwordResetToken";
 
 interface UserProfile {
     id: string;

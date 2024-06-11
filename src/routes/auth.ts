@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createNewUser, generateForgotPasswordLink, generateVerificationLink, grantAccessToken, grantValidPasswordResetLink, sendProfile, sendPublicProfile, signIn, signOut, updateAvatar, updatePassword, updateProfile, verifyEmail } from 'controllers/auth';
-import validate from 'middleware/validator';
-import { newUserSchema, resetPasswordSchema, verifyTokenSchema } from 'utils/validationSchema';
-import { isAuth, isValidPasswordResetToken } from 'middleware/auth';
-import fileParser from 'middleware/fileParser';
+import { createNewUser, generateForgotPasswordLink, generateVerificationLink, grantAccessToken, grantValidPasswordResetLink, sendProfile, sendPublicProfile, signIn, signOut, updateAvatar, updatePassword, updateProfile, verifyEmail } from '../controllers/auth';
+import validate from '../middleware/validator';
+import { newUserSchema, resetPasswordSchema, verifyTokenSchema } from '../utils/validationSchema';
+import { isAuth, isValidPasswordResetToken } from '../middleware/auth';
+import fileParser from '../middleware/fileParser';
 
 const authRouter = Router();
 

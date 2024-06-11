@@ -1,5 +1,5 @@
 import { Document, Schema, model } from "mongoose"
-import categories from "utils/categories";
+import categories from "../utils/categories";
 
 type productImage = { url: string; id: string };
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getConversation, getLastChats, getOrCreateConversation, updateChatSeenStatus } from "controllers/conversation";
-import { isAuth } from "middleware/auth";
+import { getConversation, getLastChats, getOrCreateConversation, updateChatSeenStatus } from "../controllers/conversation";
+import { isAuth } from "../middleware/auth";
 
 
 const conversationRouter = Router();

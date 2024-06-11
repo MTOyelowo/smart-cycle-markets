@@ -3,7 +3,7 @@ import 'express-async-errors';
 import './db';
 import express from 'express';
 import http from "http";
-import authRouter from 'routes/auth';
+import authRouter from './routes/auth';
 import productRouter from "./routes/products";
 import { sendErrorRes } from "./utils/helper";
 import { Server } from "socket.io";
