@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const validator_1 = __importDefault(require("../middleware/validator"));
+const fileParser_1 = __importDefault(require("../middleware/fileParser"));
+const validationSchema_1 = require("../utils/validationSchema");
+const product_1 = require("../controllers/product");
+const productRouter = (0, express_1.Router)();
+productRouter.post("/list", auth_1.isAuth, fileParser_1.default, (0, validator_1.default)(validationSchema_1.newProductSchema), product_1.listNewProduct);
+productRouter.patch("/:id", auth_1.isAuth, fileParser_1.default, (0, validator_1.default)(validationSchema_1.newProductSchema), product_1.updateProduct);
+productRouter.delete("/:id", auth_1.isAuth, product_1.deleteProduct);
+productRouter.delete("/image/:productId/:imageId", auth_1.isAuth, product_1.deleteProductImage);
+productRouter.get("/details/:id", product_1.getProductDetails);
+productRouter.get("/by-category/:category", product_1.getProductByCategory);
+productRouter.get("/latest", product_1.getLatestProducts);
+productRouter.get("/listings", auth_1.isAuth, product_1.getProductListings);
+productRouter.get("/search", auth_1.isAuth, product_1.searchProducts);
+exports.default = productRouter;
