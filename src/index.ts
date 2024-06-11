@@ -11,7 +11,6 @@ import { TokenExpiredError, verify } from "jsonwebtoken";
 import morgan from "morgan";
 import conversationRouter from "./routes/conversation";
 import ConversationModel from "./models/conversation";
-import { timeStamp } from "console";
 import { updateSeenStatus } from "./controllers/conversation";
 
 const app = express();
@@ -19,6 +18,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
     path: "/socket-message"
 })
+const PORT = process.env.PORT || 3030;
 
 app.use(morgan("dev"));
 app.use(express.static("src/public"));
@@ -140,8 +140,8 @@ app.use("*", (req, res) => {
 })
 
 //using server.listen because to allow socket io connection too. Else just use app.listen.
-server.listen(8000, () => {
-    console.log("The app is running on http://localhost:8000")
+server.listen(PORT, () => {
+    console.log(`The app is running on ${PORT}`)
 });
 
 
