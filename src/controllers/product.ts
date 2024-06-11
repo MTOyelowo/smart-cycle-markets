@@ -1,11 +1,12 @@
 import { UploadApiResponse } from "cloudinary";
 import { RequestHandler } from "express";
-import ProductModel from "models/product";
+import ProductModel, { ProductDocument } from "models/product";
 import { isValidObjectId } from "mongoose";
 import cloudUploader, { cloudApi } from "src/cloudinary";
 import { UserDocument } from "models/user";
 import { sendErrorRes } from "utils/helper";
 import categories from "src/utils/categories";
+import { FilterQuery } from "mongoose";
 
 const uploadImage = (filepath: string): Promise<UploadApiResponse> => {
     return cloudUploader.upload(filepath, {
@@ -289,4 +290,29 @@ export const getProductListings: RequestHandler = async (req, res) => {
     })
 
     res.json({ products: listings })
+}
+
+export const searchProducts: RequestHandler = async (req, res) => {
+    const { name } = req.query;
+
+    if (!name || typeof name !== 'string') {
+        return sendErrorRes(res, "Query parameter 'name' is required and must be a string", 400);
+    }
+
+    const filter: FilterQuery<ProductDocument> = {};
+
+    if (typeof name === "string" && name.trim() !== "") {
+
+        filter.name = { $regex: new RegExp(name, "i") };
+    }
+
+    const products = await ProductModel.find(filter).limit(50);
+
+    res.json({
+        results: products.map((product) => ({
+            id: product._id,
+            name: product.name,
+            thumbnail: product.thumbnail,
+        })),
+    });
 }
