@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 require("express-async-errors");
-require("./src/db");
+require("./db");
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
-const auth_1 = __importDefault(require("./src/routes/auth"));
+const auth_1 = __importDefault(require("./routes/auth"));
 const products_1 = __importDefault(require("./routes/products"));
 const helper_1 = require("./utils/helper");
 const socket_io_1 = require("socket.io");
