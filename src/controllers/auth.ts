@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import crypto from "crypto";
 import UserModel from "../models/user";
-import AuthVerificationTokenModel from "models/authVerificationToken";
+import AuthVerificationTokenModel from "../models/authVerificationToken";
 import { sendErrorRes } from "../utils/helper";
 import jwt from "jsonwebtoken";
 import mail from "../utils/mail";
