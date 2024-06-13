@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
 import { ObjectId, isValidObjectId } from "mongoose";
-import ConversationModel from "src/models/conversation";
-import UserModel from "src/models/user";
-import { sendErrorRes } from "src/utils/helper";
+import ConversationModel from "../models/conversation";
+import UserModel from "../models/user";
+import { sendErrorRes } from "../utils/helper";
 
 
 interface UserProfile {

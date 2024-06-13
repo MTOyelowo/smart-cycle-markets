@@ -1,11 +1,11 @@
 import { UploadApiResponse } from "cloudinary";
 import { RequestHandler } from "express";
-import ProductModel, { ProductDocument } from "models/product";
+import ProductModel, { ProductDocument } from "../models/product";
 import { isValidObjectId } from "mongoose";
-import cloudUploader, { cloudApi } from "src/cloudinary";
-import { UserDocument } from "models/user";
-import { sendErrorRes } from "utils/helper";
-import categories from "src/utils/categories";
+import cloudUploader, { cloudApi } from "../cloudinary";
+import { UserDocument } from "../models/user";
+import { sendErrorRes } from "../utils/helper";
+import categories from "../utils/categories";
 import { FilterQuery } from "mongoose";
 
 const uploadImage = (filepath: string): Promise<UploadApiResponse> => {

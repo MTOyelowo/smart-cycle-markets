@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { isAuth } from "middleware/auth";
-import validate from "middleware/validator";
-import fileParser from "middleware/fileParser";
-import { newProductSchema } from "utils/validationSchema";
-import { deleteProduct, deleteProductImage, getLatestProducts, getProductByCategory, getProductDetails, getProductListings, listNewProduct, searchProducts, updateProduct } from "controllers/product";
+import { isAuth } from "../middleware/auth";
+import validate from "../middleware/validator";
+import fileParser from "../middleware/fileParser";
+import { newProductSchema } from "../utils/validationSchema";
+import { deleteProduct, deleteProductImage, getLatestProducts, getProductByCategory, getProductDetails, getProductListings, listNewProduct, searchProducts, updateProduct } from "../controllers/product";
 
 
 const productRouter = Router();

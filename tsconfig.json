@@ -19,5 +19,6 @@
       "utils/*": ["./src/utils/*"],
       "middleware/*": ["./src/middleware/*"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }

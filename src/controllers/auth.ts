@@ -1,14 +1,14 @@
 import { RequestHandler } from "express";
 import crypto from "crypto";
-import UserModel from "models/user";
-import AuthVerificationTokenModel from "models/authVerificationToken";
-import { sendErrorRes } from "utils/helper";
+import UserModel from "../models/user";
+import AuthVerificationTokenModel from "../models/authVerificationToken";
+import { sendErrorRes } from "../utils/helper";
 import jwt from "jsonwebtoken";
-import mail from "utils/mail";
-import PasswordResetTokenModel from "src/models/passwordResetToken";
+import mail from "../utils/mail";
+import PasswordResetTokenModel from "../models/passwordResetToken";
 
 import { isValidObjectId } from "mongoose";
-import cloudUploader from "src/cloudinary";
+import cloudUploader from "../cloudinary";
 
 const VERIFICATION_LINK = process.env.VERIFICATION_LINK;
 const PASSWORD_RESET_LINK = process.env.PASSWORD_RESET_LINK;
