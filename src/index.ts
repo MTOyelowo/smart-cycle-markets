@@ -16,7 +16,7 @@ import { updateSeenStatus } from "./controllers/conversation";
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-    path: "/socket-message"
+    path: '/socket-message'
 })
 const PORT = process.env.PORT || 3030;
 
@@ -34,7 +34,7 @@ app.use('/conversation', conversationRouter);
 io.use((socket, next) => {
     const socketReq = socket.handshake.auth as { token: string } | undefined;
     if (!socketReq?.token) {
-        return next(new Error("Unauthorized request!"));
+        return next(new Error('Unauthorized request!'));
     }
 
     try {
@@ -42,10 +42,10 @@ io.use((socket, next) => {
 
     } catch (error) {
         if (error instanceof TokenExpiredError) {
-            return next(new Error("jwt expired"));
+            return next(new Error('jwt expired'));
         }
 
-        return next(new Error("Invalid token!"));
+        return next(new Error('Invalid token!'));
 
     }
 
@@ -89,14 +89,14 @@ type SeenData = {
     conversationId: string;
 };
 
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
 
     const socketData = socket.data as { jwtDecode: { id: string } }
     const userId = socketData.jwtDecode.id
 
     socket.join(userId);
 
-    socket.on("chat:new", async (data: IncomingMessage) => {
+    socket.on('chat:new', async (data: IncomingMessage) => {
         const { conversationId, message, to } = data;
 
         await ConversationModel.findByIdAndUpdate(conversationId, {
@@ -115,16 +115,16 @@ io.on("connection", (socket) => {
             message: message,
         }
 
-        socket.to(to).emit("chat:message", messageResponse);
+        socket.to(to).emit('chat:message', messageResponse);
     });
 
-    socket.on("chat:seen", async ({ conversationId, messageId, peerId }: SeenData) => {
+    socket.on('chat:seen', async ({ conversationId, messageId, peerId }: SeenData) => {
         await updateSeenStatus(peerId, conversationId);
-        socket.to(peerId).emit("chat:seen", { conversationId, messageId });
+        socket.to(peerId).emit('chat:seen', { conversationId, messageId });
     })
 
-    socket.on("chat:typing", (typingData: { to: string, active: boolean }) => {
-        socket.to(typingData.to).emit("chat:typing", { typing: typingData.active })
+    socket.on('chat:typing', (typingData: { to: string, active: boolean }) => {
+        socket.to(typingData.to).emit('chat:typing', { typing: typingData.active })
     })
 
 })
